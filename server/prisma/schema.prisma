@@ -13,13 +13,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Users {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(255)
+  email      String   @unique @db.VarChar(255)
+  password   String
+  profile    String?
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  News News[]
+}
 
-model Users{
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(255)
-  email String @unique @db.VarChar(255)
-  password String
-  profile String?
+model News {
+  id      Int   @id @default(autoincrement())
+  user_id Int
+  user    Users @relation(fields: [user_id], references: [id])
+  title   String @db.VarChar(255)
+  content String
+  image   String @db.VarChar(255)
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 }
