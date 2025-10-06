@@ -5,6 +5,7 @@ import fileUpload from 'express-fileupload';
 
 import authRouter from './routers/AuthRouter.js';
 import profileRouter from './routers/ProfileRouter.js';
+import newsRouter from './routers/NewsRouter.js';
 
 const app = express();
 
@@ -14,7 +15,9 @@ const PORT = process.env.PORT;
 // middleware
 app.use(express.json());
 app.use(cors());
+app.use(express.static("public"));
 app.use(fileUpload());
+
 
 
 app.get("/", (req, res) => {
@@ -23,8 +26,10 @@ app.get("/", (req, res) => {
     .json({ success: true, message: "Welcome - Backend is working." });
 });
 
+
 app.use("/api/auth", authRouter);
 app.use("/api/user", profileRouter);
+app.use("/api/news" , newsRouter);
 
 
 app.listen(PORT, () => {

@@ -45,7 +45,7 @@ export async function updateUser(req, res) {
     const imgExtension = profile.name.split(".");
     const imgName = randomNumGenenrator() + "." + imgExtension[1];
     
-    const uploadPath = process.cwd() + "/public/images" + imgName;
+    const uploadPath = process.cwd() + "/public/images/" + imgName;
     
     profile.mv(uploadPath , (err) => {
        if(err){

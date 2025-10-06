@@ -19,3 +19,7 @@ function bytesToMB(bytes) {
 export const randomNumGenenrator = () => {
   return uuidv4();
 }
+
+export const imageUrlTransformer = (imageName) => {
+  return `${process.env.APP_URL}/images/${imageName}`
+}
